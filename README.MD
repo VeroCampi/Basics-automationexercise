@@ -8,3 +8,4 @@ WEB
 https://automationexercise.com/
 
 
+https://docs.cypress.io/app/guides/cypress-studio?utm_medium=Cloud+Message+Banner&utm_campaign=ai_tools_education_2026q2&utm_source=Binary%3A+App
