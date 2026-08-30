@@ -1,5 +1,4 @@
 node_modules/
 /package-lock.json
 /package.json
-/cypress.config.js
-.env
+/config.json
