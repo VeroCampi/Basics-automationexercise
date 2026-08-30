@@ -1,4 +1,22 @@
-Caso | Descripcion | Paso 1 | Paso 2 | Paso 3 | Paso 4 | Paso 5 | Paso 6 | Paso 7 | Paso 8 | Resultado
---- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| TC01 | Crear usuario| Hacer click en  Signup / Login| validar que existe New User Signup! | escribir el nombre en el input de Name | escribir el email en el input de Email | dar click a sign up | validar que la url cambia a /signup | completar formulario | Dar click al boton de create account 
-| TC02 | Login con usuario|
+Test cases automation exercise
+
+## TC001: Sign up new user
+
+- Access to the base url
+- Go to sin up sign in button
+- Assert sign up label is visible
+- Complete the full form
+- Assert the final view of user creation
+- Log Out the user
+
+## TC002: Sign in an old user and buy a product
+
+- access the base url
+- insert email
+- inset password
+- access products
+- select woman
+- select dress
+- checkout to payment
+- assert payment form
+- pay the product
