@@ -1,22 +1,39 @@
 describe("Sign Up", () => {
   it("Complete the signUp workflow", () => {
-    const serverId = Cy.env("SERVER_ID");
-    const userName = faker.internet.username();
-    const testEmail = userName + "@" + serverId + "mailosaur.net";
-    const fakePassword = faker.internet.password();
+    const apiUrl = Cypress.expose("BASE_URL");
+    const serverId = cy
+      .task("getSecret", "MAILOSAUR_SERVER_ID")
+      .then((id) => {
+        return id;
+      })
+      .then((serverId) => {
+        const userName = faker.internet.username();
+        const testEmail = userName + "@" + serverId + "mailosaur.net";
+        const fakePassword = faker.internet.password();
 
-    cy.visit(Cy.env('BASE_URL'));
-    cy.contains(" Signup / Login").click();
-    cy.url().should("include", "/login");
-    cy.contains("New User Signup!").should("be.visible");
-    cy.get('input[data-qa="signup-name"]').type(userName);
-    cy.get('input[data-qa="signup-email"]').type(testEmail);
-    cy.get('button[data-qa="signup-button"]').contains("Signup").click();
-    cy.contains("Enter Account Information").should("be.visible");
-    cy.get('input[value="Mrs"]').click();
-    cy.get('input[data-qa="name"]').should("have.value", userName);
-    cy.get('input[data-qa="email"]').should("have.value", testEmail);
-    cy.get('input[data-qa="password"]').type(fakePassword);
+        return {
+          userName: userName,
+          testEmail: testEmail,
+          fakePassword: fakePassword,
+        };
+      })
+      .then((userData) => {
+        cy.visit(apiUrl);
+        cy.contains(" Signup / Login").click();
+        cy.url().should("include", "/login");
+        cy.contains("New User Signup!").should("be.visible");
+        cy.get('input[data-qa="signup-name"]').type(userData.userName);
+        cy.get('input[data-qa="signup-email"]').type(userData.testEmail);
+        cy.get('button[data-qa="signup-button"]').contains("Signup").click();
+        cy.contains("Enter Account Information").should("be.visible");
+        cy.get('input[value="Mrs"]').click();
+        cy.get('input[data-qa="name"]').should("have.value", userData.userName);
+        cy.get('input[data-qa="email"]').should(
+          "have.value",
+          userData.testEmail,
+        );
+        cy.get('input[data-qa="password"]').type(userData.fakePassword);
+      });
     cy.get('select[data-qa="days"]')
       .should("be.visible")
       .select("5")
