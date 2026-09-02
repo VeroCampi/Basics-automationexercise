@@ -20,3 +20,8 @@ Test cases automation exercise
 - checkout to payment
 - assert payment form
 - pay the product
+
+## TC003: Complete contact us form
+- complete the form
+- assert the validation view
+
