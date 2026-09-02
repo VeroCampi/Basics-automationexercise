@@ -30,7 +30,7 @@ describe("Sign in and buy dress", () => {
     cy.get('a[href="/payment"]').contains("Place Order").click();
     cy.get("h2").contains("Payment").should("be.visible");
     cy.get("label").contains("Name on Card").should("be.visible");
-    cy.get('name[data-qa="name-on-card"]').type("Random Guy");
+    cy.get('input[data-qa="name-on-card"]').type("Random Guy");
     cy.get("label").contains("Card Number").should("be.visible");
     cy.get('input[data-qa="card-number"]').type("4242424242424242");
     cy.get("label").contains("CVC").should("be.visible");
