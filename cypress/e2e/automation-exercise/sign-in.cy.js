@@ -41,5 +41,11 @@ describe("Sign in and buy dress", () => {
     cy.get('button[data-qa="pay-button"]')
       .contains("Pay and Confirm Order")
       .click();
+    cy.get("h2 > b").contains("Order Placed!").should("be.visible");
+    cy.get('a[data-qa="continue-button"]').contains("Continue").click();
+    cy.get('a[href="/logout"]')
+      .contains(" Logout")
+      .should("be.visible")
+      .click();
   });
 });
